@@ -42,8 +42,9 @@ namespace testWPF
         private Boolean isRecord = false;
         private Boolean isRun = false;
         private string filename = "";
+        const string dir = @"C:\Users\Administrator\Desktop\testWPF\";
         //定义Timer 
-        System.Timers.Timer Timers_Timer = new System.Timers.Timer();
+        //System.Timers.Timer Timers_Timer = new System.Timers.Timer();
 
         /*报警蜂鸣器变量*/
         public bool warning = false; //将警报初值设为false
@@ -60,6 +61,11 @@ namespace testWPF
             /*设备的加载*/
             camera = new Camera();
             writer = new VideoFileWriter();
+            if (camera.getCamera()==null)
+            {
+                MessageBox.Show("未找到设备，程序退出");
+                return;
+            }
             videoSourcePlayer1.VideoSource = camera.getCamera();//设置视频player的源
             Console.WriteLine("相机和视频加载完毕");
             camera.getCamera().NewFrame += new NewFrameEventHandler(writeVideo);//new frame的注册函数
@@ -88,58 +94,20 @@ namespace testWPF
             if (this.camera.isRun()&&videoSourcePlayer1.IsRunning)
             {
                 isRun = true;
-                filename = DateTime.Now.ToString("yyyy-mm-dd-hh-mm-ss-ff") + ".avi";
-                writer.Open(@"c:\users\administrator\desktop\test\" + filename,
-                    camera.getWidth(),
-                    camera.getHeight(),
-                    camera.getFrameRate(),
-                    VideoCodec.MPEG4);
+                //filename = DateTime.Now.ToString("yyyy-mm-dd-hh-mm-ss-ff") + ".avi";
+                //writer.Open(dir + filename,
+                //    camera.getWidth(),
+                //    camera.getHeight(),
+                //    camera.getFrameRate(),
+                //    VideoCodec.MPEG4);
                 isRecord = true;
             }
             else
             {
                 MessageBox.Show("无法找到视频源");
             }
-            /*启动计时器*/
-            Timers_Timer.Interval = 30 * 1000;
-            Timers_Timer.Enabled = true;
-            Timers_Timer.Start();
-            Timers_Timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
         }
 
-        /*计时器定时执行的函数*/
-        protected void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            isRecord = false;
-            Thread.Sleep(1000);
-            if (writer.IsOpen)
-            {
-                writer.Close();
-            }
-            if (isRun)
-            {
-                const string dir = @"C:\Users\Administrator\Desktop\test\";
-                if (!File.Exists(dir))
-                    Directory.CreateDirectory(dir);
-
-                //覆盖上一次的录屏文件
-                //if (File.Exists(dir + filename))
-                //    File.Delete(dir + filename);
-
-                filename = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-ff") + ".avi";
-                writer.Open(@"C:\Users\Administrator\Desktop\test\" + filename,
-                   camera.getWidth(),
-                   camera.getHeight(),
-                   camera.getFrameRate(),
-                   VideoCodec.MPEG4);
-                isRecord = true;
-            }
-            else
-            {
-                MessageBox.Show("无法找到视频源");
-            }
-
-        }
 
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -153,10 +121,10 @@ namespace testWPF
         }
         private void Form1_Resize(object sender, EventArgs e)
         {
-            float ratioX = (this.Width) / width;
-            float ratioY = (this.Height) / heigth;
-            Utils.setControl(ratioX, ratioY, this);
-            
+            //float ratioX = (this.Width) / width;
+            //float ratioY = (this.Height) / heigth;
+            //Utils.setControl(ratioX, ratioY, this);
+
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -196,12 +164,6 @@ namespace testWPF
             // MediaPlayer3.settings.autoStart = false;
         }
 
-
-        private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -213,11 +175,6 @@ namespace testWPF
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void 生成ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
@@ -293,6 +250,47 @@ namespace testWPF
                 mediaPlayer.Ctlcontrols.play();
             }
             
+        }
+
+        private void startrecord_Click(object sender, EventArgs e)
+        {
+
+            if (writer.IsOpen&& isRecord==true)
+            {
+                MessageBox.Show("请先停止录制！！！");
+                return;
+            }                
+
+            if (isRun)
+            {
+                startrecord.Text = "正在录制";
+                isRecord = true;
+
+                if (!File.Exists(dir))
+                    Directory.CreateDirectory(dir);
+
+                filename = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-ff") + ".avi";
+                writer.Open(dir + filename,
+                   camera.getWidth(),
+                   camera.getHeight(),
+                   camera.getFrameRate(),
+                   VideoCodec.MPEG4);
+            }
+            else
+            {
+                MessageBox.Show("无法找到视频源");
+            }
+        }
+
+        private void stoprecord_Click(object sender, EventArgs e)
+        {
+            if (isRecord==false && writer.IsOpen==false)
+            {
+                MessageBox.Show("已停止录制");
+            }
+            isRecord = false;
+            startrecord.Text = "开始录制";
+            writer.Close();
         }
     }
 }

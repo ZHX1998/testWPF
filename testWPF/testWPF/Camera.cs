@@ -15,8 +15,16 @@ namespace WindowsFormsApp1
         public Camera()
         {
             FilterInfoCollection videoDevices= new FilterInfoCollection(FilterCategory.VideoInputDevice);//寻找所有的摄像机
-            camera = new VideoCaptureDevice(videoDevices[0].MonikerString);//选择其中一个摄像机作为源
-            camera.VideoResolution = camera.VideoCapabilities[0];//分辨率
+            if(videoDevices==null || videoDevices.Count <= 0)
+            {
+                camera = null;
+            }
+            else
+            {
+                camera = new VideoCaptureDevice(videoDevices[0].MonikerString);//选择其中一个摄像机作为源
+                camera.VideoResolution = camera.VideoCapabilities[0];//分辨率
+            }
+           
         }
         public VideoCaptureDevice getCamera()
         {

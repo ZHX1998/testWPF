@@ -41,29 +41,24 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabpages = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.生成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.调试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.media_stop = new System.Windows.Forms.Button();
             this.media_pause = new System.Windows.Forms.Button();
             this.media_play = new System.Windows.Forms.Button();
-            this.media_stop = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.startrecord = new System.Windows.Forms.Button();
+            this.stoprecord = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabpages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -111,6 +106,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.stoprecord);
+            this.tabPage2.Controls.Add(this.startrecord);
             this.tabPage2.Controls.Add(this.OpenBuzz);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.label2);
@@ -219,6 +216,65 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // media_stop
+            // 
+            this.media_stop.Location = new System.Drawing.Point(416, 461);
+            this.media_stop.Name = "media_stop";
+            this.media_stop.Size = new System.Drawing.Size(46, 25);
+            this.media_stop.TabIndex = 10;
+            this.media_stop.Text = "停止";
+            this.media_stop.UseVisualStyleBackColor = true;
+            this.media_stop.Click += new System.EventHandler(this.media_stop_Click);
+            // 
+            // media_pause
+            // 
+            this.media_pause.Font = new System.Drawing.Font("宋体", 10F);
+            this.media_pause.Location = new System.Drawing.Point(268, 461);
+            this.media_pause.Name = "media_pause";
+            this.media_pause.Size = new System.Drawing.Size(46, 24);
+            this.media_pause.TabIndex = 8;
+            this.media_pause.Text = "暂停";
+            this.media_pause.UseVisualStyleBackColor = true;
+            this.media_pause.Click += new System.EventHandler(this.media_pause_Click);
+            // 
+            // media_play
+            // 
+            this.media_play.Font = new System.Drawing.Font("宋体", 10F);
+            this.media_play.Location = new System.Drawing.Point(139, 460);
+            this.media_play.Name = "media_play";
+            this.media_play.Size = new System.Drawing.Size(46, 25);
+            this.media_play.TabIndex = 9;
+            this.media_play.Text = "播放";
+            this.media_play.UseVisualStyleBackColor = true;
+            this.media_play.Click += new System.EventHandler(this.media_play_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(46, 455);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(635, 30);
+            this.pictureBox3.TabIndex = 13;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(823, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 14);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "播放列表:";
+            // 
+            // listBox1
+            // 
+            this.listBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(826, 28);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(233, 459);
+            this.listBox1.TabIndex = 11;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
             // mediaPlayer
             // 
             this.mediaPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -250,114 +306,27 @@
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // menuStrip1
+            // startrecord
             // 
-            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.文件ToolStripMenuItem,
-            this.编辑ToolStripMenuItem,
-            this.帮助ToolStripMenuItem,
-            this.生成ToolStripMenuItem,
-            this.调试ToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(82, 25);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
+            this.startrecord.Font = new System.Drawing.Font("宋体", 10F);
+            this.startrecord.Location = new System.Drawing.Point(498, 68);
+            this.startrecord.Name = "startrecord";
+            this.startrecord.Size = new System.Drawing.Size(75, 23);
+            this.startrecord.TabIndex = 9;
+            this.startrecord.Text = "开始录制";
+            this.startrecord.UseVisualStyleBackColor = true;
+            this.startrecord.Click += new System.EventHandler(this.startrecord_Click);
             // 
-            // 文件ToolStripMenuItem
+            // stoprecord
             // 
-            this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
-            this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.文件ToolStripMenuItem.Text = "文件";
-            // 
-            // 编辑ToolStripMenuItem
-            // 
-            this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
-            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.编辑ToolStripMenuItem.Text = "编辑";
-            this.编辑ToolStripMenuItem.Click += new System.EventHandler(this.编辑ToolStripMenuItem_Click);
-            // 
-            // 帮助ToolStripMenuItem
-            // 
-            this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.帮助ToolStripMenuItem.Text = "帮助";
-            // 
-            // 生成ToolStripMenuItem
-            // 
-            this.生成ToolStripMenuItem.Name = "生成ToolStripMenuItem";
-            this.生成ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.生成ToolStripMenuItem.Text = "生成";
-            this.生成ToolStripMenuItem.Click += new System.EventHandler(this.生成ToolStripMenuItem_Click);
-            // 
-            // 调试ToolStripMenuItem
-            // 
-            this.调试ToolStripMenuItem.Name = "调试ToolStripMenuItem";
-            this.调试ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.调试ToolStripMenuItem.Text = "调试";
-            // 
-            // media_pause
-            // 
-            this.media_pause.Font = new System.Drawing.Font("宋体", 10F);
-            this.media_pause.Location = new System.Drawing.Point(268, 461);
-            this.media_pause.Name = "media_pause";
-            this.media_pause.Size = new System.Drawing.Size(46, 24);
-            this.media_pause.TabIndex = 8;
-            this.media_pause.Text = "暂停";
-            this.media_pause.UseVisualStyleBackColor = true;
-            this.media_pause.Click += new System.EventHandler(this.media_pause_Click);
-            // 
-            // media_play
-            // 
-            this.media_play.Font = new System.Drawing.Font("宋体", 10F);
-            this.media_play.Location = new System.Drawing.Point(139, 460);
-            this.media_play.Name = "media_play";
-            this.media_play.Size = new System.Drawing.Size(46, 25);
-            this.media_play.TabIndex = 9;
-            this.media_play.Text = "播放";
-            this.media_play.UseVisualStyleBackColor = true;
-            this.media_play.Click += new System.EventHandler(this.media_play_Click);
-            // 
-            // media_stop
-            // 
-            this.media_stop.Location = new System.Drawing.Point(416, 461);
-            this.media_stop.Name = "media_stop";
-            this.media_stop.Size = new System.Drawing.Size(46, 25);
-            this.media_stop.TabIndex = 10;
-            this.media_stop.Text = "停止";
-            this.media_stop.UseVisualStyleBackColor = true;
-            this.media_stop.Click += new System.EventHandler(this.media_stop_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(826, 28);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(233, 459);
-            this.listBox1.TabIndex = 11;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(823, 11);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 14);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "播放列表:";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(46, 455);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(635, 30);
-            this.pictureBox3.TabIndex = 13;
-            this.pictureBox3.TabStop = false;
+            this.stoprecord.Font = new System.Drawing.Font("宋体", 10F);
+            this.stoprecord.Location = new System.Drawing.Point(498, 153);
+            this.stoprecord.Name = "stoprecord";
+            this.stoprecord.Size = new System.Drawing.Size(75, 23);
+            this.stoprecord.TabIndex = 10;
+            this.stoprecord.Text = "停止录制";
+            this.stoprecord.UseVisualStyleBackColor = true;
+            this.stoprecord.Click += new System.EventHandler(this.stoprecord_Click);
             // 
             // Form1
             // 
@@ -367,7 +336,6 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1300, 635);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "连铸浇注异常情况预警系统";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -380,14 +348,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabpages.ResumeLayout(false);
             this.tabpages.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -397,12 +362,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 编辑ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 生成ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 调试ToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button2;
         private AForge.Controls.VideoSourcePlayer videoSourcePlayer1;
@@ -418,6 +377,8 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button stoprecord;
+        private System.Windows.Forms.Button startrecord;
     }
 }
 
